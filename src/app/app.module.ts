@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { LoginModalComponent } from './auth/modals/login-modal/login-modal.component';
-import { RegisterModalComponent } from './auth/modals/register-modal/register-modal.component';
+import { LoginComponent } from '../auth/login/login.component';
+import { RegisterComponent } from 'src/auth/register/register.component';
+import { LoginModalComponent } from 'src/auth/login-modal/login-modal.component'
+import { RegisterModalComponent } from 'src/auth/register/register-modal/register-modal.component';
 
 @NgModule({
   declarations: [

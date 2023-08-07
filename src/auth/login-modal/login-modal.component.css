@@ -1,0 +1,57 @@
+.login-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    animation: fadeIn 0.5s;
+  }
+  
+  .modal-dialog {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.5s forwards;
+    width: 70%;
+    max-width: 500px;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideDown {
+    0% {
+      top: -100%;
+    }
+    100% {
+      top: calc(50% - 200px);
+    }
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    color: #aaa;
+    transition: color 0.3s;
+    border: none;
+    background-color: white;
+  }
+  
+  .close:hover {
+    color: #333;
+  }

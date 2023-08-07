@@ -1,0 +1,69 @@
+/* register-modal.component.css */
+.register-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    animation: fadeIn 0.5s;
+  }
+
+  .register-modal .modal-header {
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .register-modal .modal-title {
+    margin: 0 auto;
+    display: inline-block; /* Add this line */
+  }
+  
+  .modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.5s;
+    width: 70%; /* Adjust the width as needed */
+    max-width: 500px; /* Add a maximum width to prevent it from becoming too wide */
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translate(-50%, -100%);
+    }
+    to {
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .register-modal .close {
+    position: absolute;
+    top: 5px; /* Adjust this value to move the button upward */
+    right: 10px;
+    font-size: 30px;
+    color: #aaa;
+    transition: color 0.3s;
+    border: none;
+    background-color: white;
+  }
+  
+  .register-modal .close:hover {
+    color: #333;
+  }
