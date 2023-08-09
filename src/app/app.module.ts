@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../auth/login/login.component';
@@ -8,7 +9,7 @@ import { LoginModalComponent } from 'src/auth/login-modal/login-modal.component'
 import { RegisterModalComponent } from 'src/auth/register/register-modal/register-modal.component';
 import { BookCrudComponent } from './book-crud/book-crud.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/AuthGuard';
 import { AuthService } from './services/auth/auth.service';
 import { BookFormComponent } from './book-crud/book-form/book-form.component';
@@ -32,9 +33,17 @@ import { QuoteListComponent } from './book-crud/quote-list/quote-list.component'
     BrowserModule,
     HttpClientModule, 
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [
+    AuthGuard, 
+    AuthService, 
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+    },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

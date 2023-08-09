@@ -1,0 +1,26 @@
+.full-width {
+    width: 100%;
+  }
+
+  .book-item {
+    min-height: 100px; /* Adjust the value as needed */
+  }
+  
+  .book-item h3 {
+    margin: 0;
+  }
+  
+  .button-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .toggle-btn {
+    white-space: nowrap;
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  
+  .edit-btn, .delete-btn {
+    margin-right: 10px; /* Adjust the margin as needed */
+ 
+  }

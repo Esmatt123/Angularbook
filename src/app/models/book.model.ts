@@ -4,6 +4,7 @@ export interface Book {
     author: string;
     publishDate: string;
     quotes: Quote[];
+    quotesVisible: boolean;
   }
   
   export interface Quote {

@@ -19,9 +19,12 @@ export class LoginModalComponent {
 
   onSubmit(email: string, password: string) {
     this.apiService.login(email, password).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         // Handle successful login here
         console.log('The login was successful', response);
+
+      const token = response.token; // Extract the token from the response
+      this.authService.setAuthToken(token);
 
         this.authService.setAuthenticated(true);
     
