@@ -1,0 +1,36 @@
+<div class="register-modal" [ngStyle]="{'display': display}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Book</h5>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group mb-3">
+              <label for="title">Title</label>
+              <input type="text" id="title" class="form-control" [(ngModel)]="editedBook.title" name="title">
+            </div>
+            <div class="form-group mb-3">
+              <label for="author">Author</label>
+              <input type="text" id="author" class="form-control" [(ngModel)]="editedBook.author" name="author">
+            </div>
+            <div class="form-group mb-3">
+              <label for="publishDate">Publish Date</label>
+              <input type="text" id="publishDate" class="form-control" [(ngModel)]="editedBook.publishDate" name="publishDate">
+            </div>
+            
+            <!-- Loop through quotes and create input fields -->
+            <div *ngFor="let quote of editedBook.quotes; let i = index" class="form-group mb-3">
+              <label for="quote{{i}}">Quote {{i + 1}}</label>
+              <input type="text" id="quote{{i}}" class="form-control" [(ngModel)]="quote.text" name="quote{{i}}">
+            </div>
+  
+            <button type="submit" class="btn btn-primary custom-btn-size btn-block" (click)="saveEdit()">Save Changes</button>
+
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

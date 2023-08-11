@@ -12,10 +12,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/AuthGuard';
 import { AuthService } from './services/auth/auth.service';
-import { BookFormComponent } from './book-crud/book-form/book-form.component';
 import { BookDetailComponent } from './book-crud/book-detail/book-detail.component';
 import { BookListComponent } from './book-crud/book-list/book-list.component';
 import { QuoteListComponent } from './book-crud/quote-list/quote-list.component';
+import { EditFormComponent } from './book-crud/book-form/edit-form/edit-form.component';
+
 
 @NgModule({
   declarations: [
@@ -24,17 +25,18 @@ import { QuoteListComponent } from './book-crud/quote-list/quote-list.component'
     LoginModalComponent,
     RegisterModalComponent,
     BookCrudComponent,
-    BookFormComponent,
     BookDetailComponent,
     BookListComponent,
-    QuoteListComponent
+    QuoteListComponent,
+    EditFormComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule, 
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [
     AuthGuard, 

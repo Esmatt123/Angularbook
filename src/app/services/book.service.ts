@@ -61,4 +61,8 @@ export class BookService {
   deleteQuote(quote: Quote): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/quote/${quote.quoteId}`);
   }
+
+  toggleIsQuoteFavourite(quote: Quote): Observable<Quote> {
+    return this.http.put<Quote>(`${this.baseUrl}/api/quote/toggle-favourite/${quote.quoteId}`, quote)
+  }
 }

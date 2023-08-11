@@ -1,32 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { Book } from "src/app/models/book.model";
+import { Book, Quote } from "src/app/models/book.model";
 import { BookService } from "src/app/services/book.service";
-import { trigger, state, style, animate, transition } from '@angular/animations';
-
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.css'],
-  animations: [
-    trigger('slideInOut', [
-      state('in', style({
-        height: '*',
-        opacity: 1,
-      })),
-      state('out', style({
-        height: '0',
-        opacity: 0,
-      })),
-      transition('in <=> out', animate('300ms ease-in-out')),
-    ]),
-  ]
 })
-
-
 
 export class BookListComponent implements OnInit {
   books: Book[] = [];
+  editModal: boolean = false;
+  selectedBookForEdit: Book | null = null;
+  selectedBookForQuotes: Book | null = null;
 
   constructor(private bookService: BookService) {}
 
@@ -45,30 +31,26 @@ export class BookListComponent implements OnInit {
     );
   }
 
+  toggleEditModal(book: Book) {
+    if (this.selectedBookForEdit === book) {
+      this.selectedBookForEdit = null;
+    } else {
+      this.selectedBookForEdit = book;
+    }
+  }
   
-
-  editBook(book: Book) {
-
-    
-    // Implement the logic to edit the book here
-    this.bookService.updateBook(book).subscribe({
-      next: (updatedBook) => {
-        console.log('Book updated:', updatedBook);
-        // Reload the books after editing
-        this.loadBooks();
-      },
-      error: (error) => {
-        console.error('Error editing book:', error);
-      }
-    });
+  openEditModal(book: Book) {
+    this.selectedBookForEdit = book;
+  }
+  
+  closeEditModal() {
+    this.selectedBookForEdit = null;
   }
 
   deleteBook(book: Book) {
-    // Implement the logic to delete the book here
     this.bookService.deleteBook(book).subscribe({
       next: () => {
         console.log('Book deleted:', book.id);
-        // Reload the books after deletion
         this.loadBooks();
       },
       error: (error) => {
@@ -78,7 +60,34 @@ export class BookListComponent implements OnInit {
   }
 
   toggleQuotes(book: Book) {
-    // Implement the logic to toggle the visibility of quotes for the book
     book.quotesVisible = !book.quotesVisible;
   }
+
+  handleSave(updatedBook: Book) {
+    this.bookService.updateBook(updatedBook).subscribe(
+      () => {
+        console.log('Book updated in the database:', updatedBook);
+  
+        // Assuming you want to update the books list and close the modal
+        this.loadBooks(); // Update the books list with fresh data
+        this.closeEditModal(); // Close the modal
+      },
+      (error) => {
+        console.error('Error updating book:', error);
+      }
+    );
+  } 
+
+  toggleIsFavourite(quote: Quote) {
+    this.bookService.toggleIsQuoteFavourite(quote).subscribe(
+      (updatedQuote) => {
+        quote.isFavourite = updatedQuote.isFavourite;
+      },
+      (error) => {
+        console.error('Error toggling isFavourite:', error);
+      }
+    );
+  }
+
+  
 }

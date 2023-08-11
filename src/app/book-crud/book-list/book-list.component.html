@@ -7,17 +7,26 @@
             <h3 class="flex-grow-1">{{ book.title }}</h3>
             <div class="button-group">
               <button class="btn btn-primary toggle-btn" (click)="toggleQuotes(book)">Toggle Quotes</button>
-              <button class="btn btn-warning edit-btn" (click)="editBook(book)">Edit</button>
+              <button class="btn btn-warning edit-btn" (click)="toggleEditModal(book)">
+                {{ selectedBookForEdit === book ? 'Close Edit' : 'Edit' }}
+              </button>
               <button class="btn btn-danger delete-btn" (click)="deleteBook(book)">Delete</button>
             </div>
           </div>
           <div *ngIf="book.quotesVisible" class="quote-list-container">
             <app-quote-list [quotes]="book.quotes" class="full-width"></app-quote-list>
+            
+            
           </div>
+          <app-edit-form
+  [display]="selectedBookForEdit === book ? 'block' : 'none'"
+  [editedBook]="selectedBookForEdit || { id: '', title: '', author: '', publishDate: '', quotes: [], quotesVisible: false }"
+  (save)="handleSave($event)"
+  (close)="closeEditModal()">
+</app-edit-form>
         </li>
       </ul>
     </div>
   </div>
 </div>
-
 
