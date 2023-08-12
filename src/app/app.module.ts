@@ -17,6 +17,9 @@ import { BookListComponent } from './book-crud/book-list/book-list.component';
 import { QuoteListComponent } from './book-crud/quote-list/quote-list.component';
 import { EditFormComponent } from './book-crud/book-form/edit-form/edit-form.component';
 import { AddBookFormComponent } from './book-crud/book-form/add-book-form/add-book-form.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FavouriteQuotesPageComponent } from './favourite-quotes-page/favourite-quotes-page.component';
+
 
 
 @NgModule({
@@ -30,15 +33,16 @@ import { AddBookFormComponent } from './book-crud/book-form/add-book-form/add-bo
     BookListComponent,
     QuoteListComponent,
     EditFormComponent,
-    AddBookFormComponent
+    AddBookFormComponent,
+    NavbarComponent,
+    FavouriteQuotesPageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule, 
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    
+    ReactiveFormsModule
   ],
   providers: [
     AuthGuard, 

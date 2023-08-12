@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Favorite Quotes</h2>
+    <br/>
+    <ul class="list-group">
+      <li *ngFor="let quote of favoriteQuotes" class="list-group-item">
+        <div class="quote-text">{{ quote.text }}</div>
+        <br/>
+        <div class="quote-details">
+          <span class="quote-page"><strong>Page:</strong> {{ quote.pageNumber }}     </span>
+          <span class="quote-book"><strong>Book:</strong> {{ quote.bookTitle }}      </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

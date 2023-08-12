@@ -67,4 +67,8 @@ export class BookService {
   toggleIsQuoteFavourite(quote: Quote): Observable<Quote> {
     return this.http.put<Quote>(`${this.baseUrl}/quote/toggle-favourite/${quote.quoteId}`, quote)
   }
+
+  getFavouriteQuotes(): Observable<Quote[]> {
+    return this.http.get<Quote[]>(`${this.baseUrl}/quote/favourite`)
+  }
 }

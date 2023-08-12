@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BookService } from 'src/app/services/book.service';
 import { Book } from 'src/app/models/book.model';
 import { Quote } from 'src/app/models/book.model';
@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from 'uuid'; // Import UUID library
 })
 export class AddBookFormComponent {
   @Output() bookAdded = new EventEmitter<Book>(); // Emit an event when a new book is added
+  @Input() existingBooks: Book[] = [];
+  @Output() cancelled = new EventEmitter<void>();
   newBook: Book = {
     id: '',
     title: '',
@@ -23,15 +25,40 @@ export class AddBookFormComponent {
   newQuoteText: string = '';
   newQuotePageNumber: number = 0;
   newQuoteIsFavourite: boolean = false;
+  errorMessage: string = '';
+  
 
   constructor(private bookService: BookService) {}
 
+  async ngOnInit() {
+    // Load the initial list of books on component initialization
+    this.loadBooks();
+  }
+
+  loadBooks() {
+    this.bookService.getBooks().subscribe({
+      next: (books) => {
+        console.log('Initial Books list:', books);
+        // Handle the initial loading of books
+      },
+      error: (error) => {
+        console.error('Error loading books:', error);
+      }
+    });
+  }
+
   addBook() {
+
+    const existingBook = this.existingBooks.find(book => book.title.toLowerCase() === this.newBook.title.toLowerCase());
+  if (existingBook) {
+    this.errorMessage = 'A book with the same title already exists.';
+    return;
+  }
     if (this.newBook.title && this.newBook.author && this.newBook.publishDate) {
       const tempId = uuidv4();
       // Store the title before resetting the form
       const bookTitle = this.newBook.title;
-      
+  
       // Create a new book object for adding
       const bookToAdd: Book = {
         id: tempId, // Use null as a placeholder for the ID
@@ -49,11 +76,13 @@ export class AddBookFormComponent {
       this.bookService.addBook(bookToAdd).subscribe({
         next: (addedBook) => {
           console.log('New Book added:', addedBook);
-          // Handle any necessary updates or actions after adding the book
-          // For example, you might want to update your books list
+          // Reload the books list after adding the book
+          this.loadBooks();
           this.resetForm();
-          // Use the stored title when adding the quote
           this.addQuoteWithStoredTitle(bookTitle);
+  
+          // Update the books list in the component with the added book
+          this.bookAdded.emit(addedBook); // Emit the event to notify the parent component
         },
         error: (error) => {
           console.error('Error adding new book:', error);
@@ -61,6 +90,7 @@ export class AddBookFormComponent {
       });
     }
   }
+  
   
   addQuoteWithStoredTitle(bookTitle: string) {
     const tempQuoteId = uuidv4();
@@ -96,4 +126,9 @@ export class AddBookFormComponent {
     this.newQuotePageNumber = 0;
     this.newQuoteIsFavourite = false;
   }
+  cancel() {
+    this.resetForm();
+     this.cancelled.emit();
+  }
+  
 }

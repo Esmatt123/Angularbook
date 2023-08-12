@@ -25,4 +25,9 @@
  
   }
 
-  
+  .add-book-form-container {
+    min-width: 600px; /* Adjust the min-width as needed */
+  }
+  .booklistmargin{
+    margin-top: 10px;
+  }

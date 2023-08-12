@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/bookcrud" *ngIf="authService.isAuthenticated()">Book list</a>
+      <a class="navbar-brand" routerLink="/favourite-quotes" *ngIf="authService.isAuthenticated()" >Favourite Quotes</a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <!-- Display the user's display name as a dropdown -->
+          
+            
+          <div class="navbar-nav ml-auto">
+            <div class="nav-item dropdown">
+              <a class="nav-link clickable" (click)="toggleDropdown()">
+                {{ authService.getUserDisplayName() }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" [ngClass]="{ 'show': isDropdownOpen }">
+                <a class="dropdown-item clickable" (click)="logout()">Logout</a>
+              </div>
+            </div>
+          </div>
+    
+          <!-- Dropdown menu for logging out -->
+          
+         
+        </ul>
+      </div>
+    </div>
+  </nav>
+  

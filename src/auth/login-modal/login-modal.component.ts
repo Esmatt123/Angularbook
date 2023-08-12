@@ -22,14 +22,16 @@ export class LoginModalComponent {
       next: (response: any) => {
         // Handle successful login here
         console.log('The login was successful', response);
-
-      const token = response.token; // Extract the token from the response
-      this.authService.setAuthToken(token);
-
-        this.authService.setAuthenticated(true);
-    
+  
+        const token = response.token; // Extract the token from the response
+        const expiresIn = 3600; // Set an arbitrary expiration time (e.g., 1 hour)
+        
+        this.authService.setAuthToken(token, expiresIn);
+  
         // Redirect to the bookcrud page
-        this.router.navigate(['/bookcrud']);
+        this.router.navigate(['/bookcrud']).catch(error => {
+          console.error('Router Navigation Error:', error);
+        });
       },
       error: (error) => {
         // Handle login error here

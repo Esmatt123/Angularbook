@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Book, Quote } from "src/app/models/book.model";
 import { BookService } from "src/app/services/book.service";
 import { AddBookFormComponent } from "../book-form/add-book-form/add-book-form.component";
@@ -16,6 +16,7 @@ export class BookListComponent implements OnInit {
   selectedBookForEdit: Book | null = null;
   selectedBookForQuotes: Book | null = null;
   addingBook: boolean = false;
+  @ViewChild(AddBookFormComponent) private addBookFormComponent!: AddBookFormComponent;
 
   constructor(private bookService: BookService, private http: HttpClient) {}
 
@@ -24,14 +25,14 @@ export class BookListComponent implements OnInit {
   }
 
   loadBooks() {
-    this.bookService.getBooks().subscribe(
-      (books) => {
+    this.bookService.getBooks().subscribe({
+      next: (books) => {
         this.books = books;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error loading books:', error);
       }
-    );
+  });
   }
 
   toggleEditModal(book: Book) {
@@ -68,18 +69,18 @@ export class BookListComponent implements OnInit {
   }
 
   handleSave(updatedBook: Book) {
-    this.bookService.updateBook(updatedBook).subscribe(
-      () => {
+    this.bookService.updateBook(updatedBook).subscribe({
+      next: () => {
         console.log('Book updated in the database:', updatedBook);
   
         // Assuming you want to update the books list and close the modal
         this.loadBooks(); // Update the books list with fresh data
         this.closeEditModal(); // Close the modal
       },
-      (error) => {
+      error: (error) => {
         console.error('Error updating book:', error);
       }
-    );
+  });
   } 
 
   toggleQuoteIsFavourite(quote: Quote) {
@@ -96,6 +97,12 @@ export class BookListComponent implements OnInit {
   
   toggleAddBookForm() {
     this.addingBook = !this.addingBook;
+  }
+
+  onBookAdded(newBook: Book) {
+    // Add the new book to the books array
+    console.log('New Book received in BookListComponent:', newBook);
+    this.books.push(newBook);
   }
   
 }

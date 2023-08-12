@@ -1,0 +1,10 @@
+.dropdown-menu {
+    display: none;
+  }
+  
+  .show {
+    display: block;
+  }
+  .clickable {
+    cursor: pointer;
+  }

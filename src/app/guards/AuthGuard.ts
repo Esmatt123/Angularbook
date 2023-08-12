@@ -9,16 +9,22 @@ export class AuthGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    console.log('AuthGuard canActivate method called');
+  
     if (this.authService.isAuthenticated()) {
-      console.log('AuthGuard is called');
-      // User is authenticated, no need to set isAuthenticated to true here
-
-      // Proceed with route activation
+      if (this.authService.isTokenExpired()) {
+        console.log('Token is expired, navigating to login page');
+        this.router.navigate(['']);
+        return false;
+      }
+  
+      console.log('Proceeding with route activation');
       return true;
     }
-
-    // User is not authenticated, navigate to the login page
+  
+    console.log('User is not authenticated, navigating to login page');
     this.router.navigate(['']);
     return false;
   }
+  
 }

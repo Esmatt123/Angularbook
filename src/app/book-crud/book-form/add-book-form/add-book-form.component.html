@@ -1,4 +1,5 @@
-<div class="register-modal">
+<br />
+<div class="container" >
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -25,29 +26,39 @@
               </div>
             </div>
   
+           
             <!-- Quote Inputs -->
-            <div class="list-group mb-4">
-              <div class="list-group-item">
-                <div class="form-group mb-3">
-                  <label for="newQuote">New Quote</label>
-                  <input placeholder="Add quote here" type="text" id="newQuote" class="form-control" [(ngModel)]="newQuoteText" name="newQuote">
-                </div>
-                <div class="form-group mb-3">
-                  <label for="pageNumber">Page Number</label>
-                  <input type="number" id="pageNumber" class="form-control" [(ngModel)]="newQuotePageNumber" name="pageNumber" min="0" placeholder="Enter page number">
-                </div>
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" id="isFavourite" [(ngModel)]="newQuoteIsFavourite" name="isFavourite">
-                  <label class="form-check-label" for="isFavourite">Is Favourite</label>
-                </div>
-                <div class="text-end">
-                  <button class="btn btn-primary" (click)="addQuoteWithStoredTitle(newBook.title)">Add Quote</button>
-                </div>
-              </div>
-            </div>
-            
+<div class="list-group mb-4">
+    <div class="list-group-item">
+      <!-- Existing Quotes -->
+      <div *ngIf="newBook.quotes.length > 0">
+        <h5>Existing Quotes:</h5>
+        <ul>
+          <li *ngFor="let quote of newBook.quotes">{{ quote.text }}</li>
+        </ul>
+      </div>
+      <div class="form-group mb-3">
+        <label for="newQuote">New Quote</label>
+        <input placeholder="Add quote here" type="text" id="newQuote" class="form-control" [(ngModel)]="newQuoteText" name="newQuote">
+      </div>
+      <div class="form-group mb-3">
+        <label for="pageNumber">Page Number</label>
+        <input type="number" id="pageNumber" class="form-control" [(ngModel)]="newQuotePageNumber" name="pageNumber" min="0" placeholder="Enter page number">
+      </div>
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" id="isFavourite" [(ngModel)]="newQuoteIsFavourite" name="isFavourite">
+        <label class="form-check-label" for="isFavourite">Is Favourite</label>
+      </div>
+      <div class="text-end">
+        <button class="btn btn-primary" (click)="addQuoteWithStoredTitle(newBook.title)">Add Quote</button>
+      </div>
+    </div>
+  </div>
+  
+             <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
             <div class="text-end mt-3">
               <button type="submit" class="btn btn-primary custom-btn-size" (click)="addBook()">Add Book</button>
+              <button type="button" class="btn btn-secondary custom-btn-size" (click)="cancel()">Cancel</button>
             </div>
             <br/>
             </div>
