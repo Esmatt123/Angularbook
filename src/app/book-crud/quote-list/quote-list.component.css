@@ -1,3 +1,18 @@
 .full-width {
     width: 100%;
   }
+
+  .checkbox-size {
+    width: 24px; /* Adjust the width as needed */
+    height: 24px; /* Adjust the height as needed */
+  }
+ 
+  
+  .checkbox-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  

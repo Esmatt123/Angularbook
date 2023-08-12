@@ -24,7 +24,7 @@
               <label for="quote{{i}}">Quote {{i + 1}}</label>
               <input type="text" id="quote{{i}}" class="form-control" [(ngModel)]="quote.text" name="quote{{i}}">
             </div>
-            <div class="text-end mt-3">
+            <div class="text-center text-md-end">
                 <button type="submit" class="btn btn-primary custom-btn-size" (click)="saveEdit()">Save Changes</button>
               </div>
             <br/>

@@ -8,3 +8,51 @@
   .clickable {
     cursor: pointer;
   }
+
+  /* styles.css or your custom CSS file */
+
+/* Adjust navbar items alignment for smaller screens */
+@media (max-width: 768px) {
+    .navbar-brand {
+      margin-right: auto;
+    }
+  
+    .navbar-nav {
+      margin-top: 8px; /* Adjust the value as needed */
+    }
+  
+    .navbar-collapse {
+      position: absolute;
+      top: 56px; /* Adjust the value to match your navbar height */
+      right: 0;
+      left: 0;
+      background-color: #343a40; /* Adjust as needed */
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+
+  /* styles.css or your custom CSS file */
+
+/* Style for the username in the dropdown */
+.dropdown-menu .nav-link.clickable {
+    font-size: 18px; /* Adjust the font size as needed */
+    text-align: center;
+  }
+  
+  /* Prevent dropdown from overflowing */
+  .dropdown-menu {
+    max-height: 200px; /* Adjust the max-height as needed */
+    overflow-y: auto;
+  }
+
+  /* Adjust font size for smaller screens */
+@media (max-width: 768px) {
+    .navbar-brand { 
+        margin: 10px ;
+      font-size: 14px; /* Adjust the font size as needed */
+    }
+  }
+
+  

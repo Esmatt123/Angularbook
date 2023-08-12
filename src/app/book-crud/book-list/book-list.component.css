@@ -24,10 +24,55 @@
     margin-right: 10px; /* Adjust the margin as needed */
  
   }
-
-  .add-book-form-container {
+  @media (min-width: 768px) {
+     .add-book-form-container {
     min-width: 600px; /* Adjust the min-width as needed */
   }
-  .booklistmargin{
-    margin-top: 10px;
   }
+ 
+  .booklistmargin{
+    margin-top: 85px;
+  }
+  
+.custom-button-group {
+    justify-content: space-around;
+    size: 50px;
+  }
+
+  
+  /* Add these styles to your CSS file */
+@media (min-width: 768px) {
+  .custom-button-group {
+    justify-content: space-around;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .custom-button-group .btn {
+    width: calc((100% - 80px) / 3); /* Divide the available width by 3 for 3 buttons with 10px gap */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Apply custom styling only on small screens */
+  .custom-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  
+  
+  .custom-button-group .btn {
+    width: 40%; /* Buttons take up the full width */
+    margin-right: 0; /* Remove margin to allow buttons to stretch */
+  }
+}
+
+@media (max-width: 384px) {
+  /* Further adjustments for even smaller screens if needed */
+  .custom-button-group .btn {
+    width: 100%; /* Buttons take up the full width */
+    margin-right: 0; /* Remove margin to allow buttons to stretch */
+  }
+}
