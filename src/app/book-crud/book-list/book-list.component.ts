@@ -1,6 +1,8 @@
+import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Book, Quote } from "src/app/models/book.model";
 import { BookService } from "src/app/services/book.service";
+import { AddBookFormComponent } from "../book-form/add-book-form/add-book-form.component";
 
 @Component({
   selector: 'app-book-list',
@@ -13,8 +15,9 @@ export class BookListComponent implements OnInit {
   editModal: boolean = false;
   selectedBookForEdit: Book | null = null;
   selectedBookForQuotes: Book | null = null;
+  addingBook: boolean = false;
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadBooks();
@@ -34,6 +37,7 @@ export class BookListComponent implements OnInit {
   toggleEditModal(book: Book) {
     if (this.selectedBookForEdit === book) {
       this.selectedBookForEdit = null;
+      
     } else {
       this.selectedBookForEdit = book;
     }
@@ -78,16 +82,20 @@ export class BookListComponent implements OnInit {
     );
   } 
 
-  toggleIsFavourite(quote: Quote) {
-    this.bookService.toggleIsQuoteFavourite(quote).subscribe(
-      (updatedQuote) => {
-        quote.isFavourite = updatedQuote.isFavourite;
+  toggleQuoteIsFavourite(quote: Quote) {
+    this.bookService.toggleIsQuoteFavourite(quote).subscribe({
+      next: () => {
+        console.log('Quote isFavourite updated in API');
       },
-      (error) => {
-        console.error('Error toggling isFavourite:', error);
+      error: (error) => {
+        console.error('Error updating quote isFavourite in API:', error);
+        // Handle the error as needed
       }
-    );
+  });
   }
-
+  
+  toggleAddBookForm() {
+    this.addingBook = !this.addingBook;
+  }
   
 }

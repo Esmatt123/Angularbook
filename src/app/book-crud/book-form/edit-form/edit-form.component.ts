@@ -1,5 +1,4 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { catchError, tap, throwError } from 'rxjs';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
 

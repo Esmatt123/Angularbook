@@ -13,20 +13,25 @@
               <button class="btn btn-danger delete-btn" (click)="deleteBook(book)">Delete</button>
             </div>
           </div>
+          <app-edit-form
+            [display]="selectedBookForEdit === book ? 'block' : 'none'"
+            [editedBook]="book"
+            (save)="handleSave($event)"
+            (close)="closeEditModal()">
+          </app-edit-form>
           <div *ngIf="book.quotesVisible" class="quote-list-container">
             <app-quote-list [quotes]="book.quotes" class="full-width"></app-quote-list>
-            
-            
           </div>
-          <app-edit-form
-  [display]="selectedBookForEdit === book ? 'block' : 'none'"
-  [editedBook]="selectedBookForEdit || { id: '', title: '', author: '', publishDate: '', quotes: [], quotesVisible: false }"
-  (save)="handleSave($event)"
-  (close)="closeEditModal()">
-</app-edit-form>
+          
         </li>
       </ul>
     </div>
   </div>
-</div>
 
+  <div class="row">
+    <div class="col-6">
+      <button class="btn btn-success" (click)="toggleAddBookForm()">Add Book</button>
+      <app-add-book-form ></app-add-book-form>
+    </div>
+  </div>
+</div>

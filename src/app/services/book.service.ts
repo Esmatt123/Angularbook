@@ -11,6 +11,8 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
+  
+
   // Fetch all books
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.baseUrl}/book`);
@@ -63,6 +65,6 @@ export class BookService {
   }
 
   toggleIsQuoteFavourite(quote: Quote): Observable<Quote> {
-    return this.http.put<Quote>(`${this.baseUrl}/api/quote/toggle-favourite/${quote.quoteId}`, quote)
+    return this.http.put<Quote>(`${this.baseUrl}/quote/toggle-favourite/${quote.quoteId}`, quote)
   }
 }

@@ -1,24 +1,27 @@
 <div class="full-width">
-        <ul class="list-group">
-          <ul *ngFor="let quote of quotes">
-            <div class="row">
-              <div class="col-12">
-                <figure class="p-3 rounded" style="border-left: .25rem solid #7a7a7a; background-color: #f0f0f0;">
-                  <blockquote class="blockquote pb-2">
-                    <p>
-                      "{{ quote.text }}"
-                    </p>
-                  </blockquote>
-                  <div class="col-12 d-flex justify-content-between">
-                    <p class="mb-0">Page Number: {{ quote.pageNumber }}</p>
-                    <p class="mb-0">Book Title: {{ quote.bookTitle }}</p>
-                    <p class="mb-0">Favorite: {{ quote.isFavourite ? 'Yes' : 'No' }}</p>
-                    
-                  </div>
-                </figure>
+  <ul class="list-group" style="list-style-type: none;">
+    <li *ngFor="let quote of quotes; let i = index" >
+      <br/>
+      <div class="row">
+        <div class="col-12">
+          <figure class="p-3 rounded" style="border-left: .25rem solid #7a7a7a; background-color: #f0f0f0;">
+            <blockquote class="blockquote pb-2">
+              <p>
+                "{{ quote.text }}"
+              </p>
+            </blockquote>
+            <div class="col-12 d-flex justify-content-between">
+              <p class="mb-0">Page Number: {{ quote.pageNumber }}</p>
+              <p class="mb-0">Book Title: {{ quote.bookTitle }}</p>
+              <p class="mb-0">Favorite: {{ quote.isFavourite ? 'Yes' : 'No' }}</p>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" [(ngModel)]="quote.isFavourite" (change)="toggleQuoteIsFavourite(quote)">
+                <label class="form-check-label" for="quoteIsFavourite{{i}}"></label>
               </div>
             </div>
-          </ul>
-        </ul>
+          </figure>
+        </div>
       </div>
-   
+    </li>
+  </ul>
+</div>
