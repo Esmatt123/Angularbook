@@ -21,38 +21,48 @@
 .day-mode {
     background-color: #ffffff; /* White background */
     color: #000000; /* Black text color */
-    .form-container{
-        background-color: #fcfea0; /* Dark background */
-        color: #ffffff; /* White text color */
-        .list-group-item{
-            border: 1px solid #ebe6a6;
-            background-color: #fffad6;
-            .form-control {
-                background-color: rgb(255, 255, 255);
-            }
-        }
-      }
+    
   }
+
+  .day-mode .form-container{
+    background-color: #fcfea0; /* Dark background */
+    color: #ffffff; /* White text color */
+   
+  }
+  .day-mode .form-container .list-group-item{
+    border: 1px solid #ebe6a6;
+    background-color: #fffad6;
+   
+}
+
+.day-mode .form-container .list-group-item .form-control {
+    background-color: rgb(255, 255, 255);
+}
   
   /* Night Mode */
   .night-mode {
     background-color: #343a40; /* Dark background */
     color: #ffffff; /* White text color */
     
-    .form-container{
+    
+  }
+
+  .night-mode .form-container{
     background-color: #222222; /* Dark background */
     color: #ffffff; /* White text color */
     
-    .list-group-item{
-        border: 1px solid #555;
-        background-color: #1a1a1a;
-        .form-control {
-            background-color: lightgrey;
-        }
-    }
-  }
+    
   }
   
+  .night-mode .form-container .list-group-item{
+    border: 1px solid #555;
+    background-color: #1a1a1a;
+    
+}
+
+.night-mode .form-container .list-group-item .form-control {
+    background-color: lightgrey;
+}
   /* Day Mode */
 .day-mode-button {
     background-color: #007bff; /* Blue button background color */

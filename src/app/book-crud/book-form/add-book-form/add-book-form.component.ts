@@ -40,6 +40,7 @@ export class AddBookFormComponent {
 
   async ngOnInit() {
     this.loadBooks();
+    
   }
 
   loadBooks() {
