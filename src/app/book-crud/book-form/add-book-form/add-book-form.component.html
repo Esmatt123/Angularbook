@@ -1,64 +1,64 @@
 <br />
-<div class="container" >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+<div class="container" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode } ">
+    <div class="modal-dialog-addbok">
+      <div class="modal-content-addbook" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode }">
+        <div class="modal-header-addbook">
         </div>
-        <div class="modal-body">
+        <div class="modal-body-addbook">
           <form>
-            <div class="form-container border p-3 mb-4 d-flex flex-column">
-            <!-- Book Inputs -->
-            <div class="list-group mb-4">
-              <div class="list-group-item">
-                <div class="form-group mb-3">
+            <div class="form-container border p-3 mb-4 d-flex flex-column" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode }">
+           
+            <div class="list-group mb-4" >
+              <div class="list-group-item" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode }">
+                <div class="form-group mb-3" >
                   <br/>
                   <label for="title">Title</label>
-                  <input type="text" id="title" class="form-control" [(ngModel)]="newBook.title" name="title" placeholder="Enter title">
+                  <input type="text" id="title" class="form-control addbook" [(ngModel)]="newBook.title" name="title" placeholder="Lägg till titel">
                 </div>
                 <div class="form-group mb-3">
                   <label for="author">Author</label>
-                  <input type="text" id="author" class="form-control" [(ngModel)]="newBook.author" name="author" placeholder="Enter author">
+                  <input type="text" id="author" class="form-control addbook" [(ngModel)]="newBook.author" name="author" placeholder="Lägg till författare">
                 </div>
                 <div class="form-group mb-3">
                   <label for="publishDate">Publish Date</label>
-                  <input type="text" id="publishDate" class="form-control" [(ngModel)]="newBook.publishDate" name="publishDate" placeholder="Enter publish date">
+                  <input type="text" id="publishDate" class="form-control addbook" [(ngModel)]="newBook.publishDate" name="publishDate" placeholder="Lägg till Datum">
                 </div>
               </div>
             </div>
   
            
-            <!-- Quote Inputs -->
+          
 <div class="list-group mb-4">
-    <div class="list-group-item">
-      <!-- Existing Quotes -->
+    <div class="list-group-item" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode }">
+      
       <div *ngIf="newBook.quotes.length > 0">
-        <h5>Existing Quotes:</h5>
+        <h5>Nuvarande citat:</h5>
         <ul>
           <li *ngFor="let quote of newBook.quotes">{{ quote.text }}</li>
         </ul>
       </div>
       <div class="form-group mb-3">
-        <label for="newQuote">New Quote</label>
-        <input placeholder="Add quote here" type="text" id="newQuote" class="form-control" [(ngModel)]="newQuoteText" name="newQuote">
+        <label for="newQuote">Nytt citat</label>
+        <input placeholder="Lägg till citat " type="text" id="newQuote" class="form-control" [(ngModel)]="newQuoteText" name="newQuote">
       </div>
       <div class="form-group mb-3">
-        <label for="pageNumber">Page Number</label>
+        <label for="pageNumber">Sidnummer</label>
         <input type="number" id="pageNumber" class="form-control" [(ngModel)]="newQuotePageNumber" name="pageNumber" min="0" placeholder="Enter page number">
       </div>
       <div class="form-check mb-3">
         <input class="form-check-input" type="checkbox" id="isFavourite" [(ngModel)]="newQuoteIsFavourite" name="isFavourite">
-        <label class="form-check-label" for="isFavourite">Is Favourite</label>
+        <label class="form-check-label" for="isFavourite">Favorit</label>
       </div>
       <div class="text-end">
-        <button class="btn btn-primary" (click)="addQuoteWithStoredTitle(newBook.title)">Add Quote</button>
+        <button class="btn btn-primary" (click)="addQuoteWithStoredTitle(newBook.title)" [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode }">Add Quote</button>
       </div>
     </div>
   </div>
   
              <div *ngIf="errorMessage" class="alert alert-danger mt-2">{{ errorMessage }}</div>
-             <div class="text-center text-md-end mt-3">
-              <button type="submit" class="btn btn-primary custom-btn-size" (click)="addBook()">Add Book</button>
-              <button type="button" class="btn btn-secondary custom-btn-size some-space" (click)="cancel()">Cancel</button>
+             <div class="text-center text-md-end mt-3" style="margin: 0; padding: 0;">
+              <button type="submit" class="btn btn-primary custom-btn-size" (click)="addBook() " [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode }">Lägg till bok</button>
+              <button type="button" class="btn btn-secondary custom-btn-size some-space" (click)="cancel()" [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode }">Avbryt</button>
             </div>
             <br/>
             </div>

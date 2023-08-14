@@ -1,6 +1,9 @@
-<div class="d-flex flex-column justify-content-center align-items-center vh-100">
-  <button class="btn btn-primary custom-btn-size mb-2" (click)="openLoginModal()">Login</button>
-  <button class="btn btn-primary custom-btn-size" (click)="openRegisterModal()">Register</button>
+<div class="d-flex flex-column justify-content-center align-items-center" style="height: calc(100vh - 130px)">
+  <button class="btn btn-primary custom-btn-size mb-2" (click)="openLoginModal()">Logga in</button>
+  <button class="btn btn-primary custom-btn-size" (click)="openRegisterModal()">Registrera</button>
   <app-login-modal [display]="loginModal ? 'block' : 'none'" (closeModal)="closeLoginModal()"></app-login-modal>
   <app-register-modal [display]="registerModal ? 'block' : 'none'" (closeRegModal)="closeRegisterModal()"></app-register-modal>
+  <br/>
+  <p>email: jekyll@test.com</p>
+  <p>lösenord: Pa$$w0rd</p>
 </div>

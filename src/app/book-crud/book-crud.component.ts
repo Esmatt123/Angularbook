@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AddBookFormComponent } from './book-form/add-book-form/add-book-form.component';
-import { BookService } from '../services/book.service';
-import { Book } from '../models/book.model';
+import { Component} from '@angular/core';
+import { DayNightModeService } from '../services/sharedDayAndNightMode.service';
 
 @Component({
   selector: 'app-book-crud',
@@ -9,5 +7,9 @@ import { Book } from '../models/book.model';
   styleUrls: ['./book-crud.component.css']
 })
 export class BookCrudComponent{
-  
+  constructor(protected dayNightModeService: DayNightModeService){}
+
+  get isDayMode(): boolean {
+    return this.dayNightModeService.isDayMode;
+  }
 }

@@ -1,28 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode, 'login-navbar': !authService.isAuthenticated() }">
     <div class="container">
       <div class="d-flex">
-        <a class="navbar-brand ml-3 mr-3" routerLink="/bookcrud" *ngIf="authService.isAuthenticated()">Book list</a>
-        <a class="navbar-brand mr-auto" routerLink="/favourite-quotes" *ngIf="authService.isAuthenticated()">Favourite Quotes</a>
+        <a class="navbar-brand ml-3 mr-3" routerLink="/bookcrud"
+        *ngIf="authService.isAuthenticated()" [ngClass]="{ 'white-text': !isDayMode }">Bok lista</a>
+     <a class="navbar-brand mr-auto" routerLink="/favourite-quotes"
+        *ngIf="authService.isAuthenticated()" [ngClass]="{ 'white-text': !isDayMode }">Favourit citat</a>
       </div>
   
       <!-- Toggle button for collapsed navbar -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" *ngIf="authService.isAuthenticated()">
+  <span class="navbar-toggler-icon"></span>
+</button>
   
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
-            <a class="nav-link clickable text-center" (click)="toggleDropdown()">
+            <a class="nav-link clickable text-center white-text" (click)="toggleDropdown()" [ngClass]="{ 'show': isDropdownOpen, }">
               {{ authService.getUserDisplayName() }}
             </a>
-            <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
-              <a class="dropdown-item clickable" (click)="logout()">Logout</a>
-            </div>
+            <div class="dropdown-menu dropdown-menu-right custom-dropdown-menu"
+     [ngClass]="{ 'show': isDropdownOpen, 'day-mode': isDayMode, 'night-mode': !isDayMode, }">
+  <a class="dropdown-item clickable" [ngClass]="{'white-text': !isDayMode}" (click)="logout()">Logga ut</a>
+</div>
           </li>
         </ul>
       </div>
+      <button class="btn btn-link text-light" (click)="toggleDayNightMode()">
+        <i class="bi bi-sun" *ngIf="isDayMode"></i>
+        <i class="bi bi-moon" *ngIf="!isDayMode"></i>
+      </button>
     </div>
   </nav>
+  <br/>
   

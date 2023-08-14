@@ -1,34 +1,62 @@
 <div class="register-modal" [ngStyle]="{'display': display}">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
+    <div class="modal-dialog-editform">
+      <div class="modal-content-editform" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode }">
+        <div class="modal-header-editform">
         </div>
-        <div class="modal-body">
+        <div class="modal-body-editform">
           <form>
             <div class="form-group mb-3">
                 <br/>
-              <label for="title">Title</label>
-              <input type="text" id="title" class="form-control" [(ngModel)]="editedBook.title" name="title">
-            </div>
-            <div class="form-group mb-3">
-              <label for="author">Author</label>
-              <input type="text" id="author" class="form-control" [(ngModel)]="editedBook.author" name="author">
-            </div>
-            <div class="form-group mb-3">
-              <label for="publishDate">Publish Date</label>
-              <input type="text" id="publishDate" class="form-control" [(ngModel)]="editedBook.publishDate" name="publishDate">
-            </div>
-            
-            <!-- Loop through quotes and create input fields -->
-            <div *ngFor="let quote of editedBook.quotes; let i = index" class="form-group mb-3">
-              <label for="quote{{i}}">Quote {{i + 1}}</label>
-              <input type="text" id="quote{{i}}" class="form-control" [(ngModel)]="quote.text" name="quote{{i}}">
-            </div>
-            <div class="text-center text-md-end">
-                <button type="submit" class="btn btn-primary custom-btn-size" (click)="saveEdit()">Save Changes</button>
+                <label for="title" [ngClass]="{ 'day-mode-text': isDayMode, 'night-mode-text': !isDayMode }">Titel</label>
+                <input type="text" id="title" class="form-control editform" [(ngModel)]="editedBook.title" name="title">
               </div>
-            <br/>
+              <div class="form-group mb-3">
+                <label for="author" [ngClass]="{ 'day-mode-text': isDayMode, 'night-mode-text': !isDayMode }">Författare</label>
+                <input type="text" id="author" class="form-control editform" [(ngModel)]="editedBook.author" name="author">
+              </div>
+              <div class="form-group mb-3">
+                <label for="publishDate" [ngClass]="{ 'day-mode-text': isDayMode, 'night-mode-text': !isDayMode }">Publicerings-datum</label>
+                <input type="text" id="publishDate" class="form-control editform" [(ngModel)]="editedBook.publishDate" name="publishDate">
+              </div>
+              
+              
+  
+            <!-- Loop through quotes and create input fields -->
+            <div *ngFor="let quote of editedBook.quotes; let i = index" class="form-group mb-3 ">
+              <label for="quote{{i}}" [ngClass]="{ 'day-mode-text': isDayMode, 'night-mode-text': !isDayMode }">Citat {{i + 1}}</label>
+              <input type="text" id="quote{{i}}" class="form-control editform" [(ngModel)]="quote.text" name="quote{{i}}">
+             
+              <button class="btn btn-danger btn-sm" style="margin-top: 5px;" (click)="removeQuote(i)" [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode }">Ta bort</button>
             
+            </div>
+  
+            <!-- Add Quote Button -->
+            <div class="text-center text-md-end">
+                <button type="button" class="btn btn-success" (click)="toggleAddQuoteForm()" [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode }">Lägg till citat</button>
+            </div>
+
+            <div *ngIf="isAddQuoteVisible" class="form-group mb-3">
+                <label for="newQuote" class="white-text">Nytt citat</label>
+                <input placeholder="Add quote here" type="text" id="newQuote" class="form-control" [(ngModel)]="newQuote.text" name="newQuote">
+              </div>
+              <div *ngIf="isAddQuoteVisible" class="form-group mb-3">
+                <label for="pageNumber">Sidnummer</label>
+                <input type="number" id="pageNumber" class="form-control editform" [(ngModel)]="newQuote.pageNumber" name="pageNumber" min="0" placeholder="Enter page number">
+              </div>
+              <div *ngIf="isAddQuoteVisible" class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isFavourite" [(ngModel)]="newQuote.isFavourite" name="isFavourite" >
+                <label class="form-check-label" for="isFavourite">Favoritcitat</label>
+              </div>
+              <div *ngIf="isAddQuoteVisible" class="text-end">
+                <button class="btn btn-primary" (click)="addNewQuote()" [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode, 'white-text': !isDayMode }"  >Lägg till citat</button>
+              </div>
+            
+            <!-- Centered "Save Changes" button for smaller screens -->
+            <div class="text-center text-md-end mt-3">
+              <button type="submit" class="btn btn-primary custom-btn-size" (click)="saveEdit()" [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode, 'white-text': !isDayMode  }">Spara ändringar</button>
+            </div>
+            <br/>
+  
           </form>
           <br/>
         </div>

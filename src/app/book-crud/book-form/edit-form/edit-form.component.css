@@ -1,0 +1,42 @@
+ /* Add more classes for other styles as needed */
+ .day-mode .modal-content-editform {
+    background-color: #f5f5f5; /* Day mode background color */
+    color: #ffffff; /* Day mode text color */
+    border-color: #ffffff; /* Day mode border color */
+    
+  }
+  
+  .night-mode .modal-content-editform {
+    background-color: #222222; /* Night mode background color */
+    color: #ffffff; /* Night mode text color */
+    border-color: #ffffff; /* Night mode border color */
+  }
+  
+  .day-mode-text {
+    color: black; /* Set the appropriate color for day mode */
+  }
+  
+  .night-mode-text {
+    color: white; /* Set the appropriate color for night mode */
+  }
+
+  .day-mode-button { /* Set the appropriate background color for day mode */
+    color: white; /* Set the appropriate text color for day mode */
+  }
+  
+  .night-mode-button {
+    background-color: #343a40; /* Set the appropriate background color for night mode */
+    color: white; /* Set the appropriate text color for night mode */
+  }
+
+  .day-mode .form-control {
+    background-color: #f8f9fa; /* Light grey background color */
+    color: #000; /* Text color */
+  }
+  
+  /* For night mode */
+  .night-mode .form-control {
+    background-color: #343a40; /* Dark grey background color */
+    color: white; /* Text color */
+    border: none;
+  }

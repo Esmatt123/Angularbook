@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
 
   openLoginModal() {
     this.loginModal = true;
+    console.log('button was pressed', this.loginModal)
   }
 
   closeLoginModal() {

@@ -11,7 +11,7 @@
     animation: fadeIn 0.5s;
   }
 
-  .register-modal .modal-header {
+  .register-modal .modal-header-register {
     text-align: center;
     padding: 15px;
   }
@@ -21,7 +21,7 @@
     display: inline-block; /* Add this line */
   }
   
-  .modal-dialog {
+  .modal-dialog-register {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -66,4 +66,15 @@
   
   .register-modal .close:hover {
     color: #333;
+  }
+
+  .modal-title-register{
+    margin-right: 5px;
+  }
+  .close{
+    margin-left: 5px;
+  }
+
+  .black-text{
+    color: black
   }

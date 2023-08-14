@@ -1,37 +1,39 @@
 <div class="register-modal" [ngStyle]="{'display': display}">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Register</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeRegModal.emit()">
-            <i class="bi bi-x-square-fill"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group mb-3">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="email">Email</label>
-              <input type="email" id="email" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="username">Username</label>
-              <input type="text" id="username" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="password">Password</label>
-              <input type="password" id="password" class="form-control">
-            </div>
-            <div class="form-group mb-3">
-              <label for="confirmPassword">Confirm Password</label>
-              <input type="password" id="confirmPassword" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary custom-btn-size btn-block">Register</button>
-          </form>
-        </div>
+  <div class="modal-dialog-register">
+    <div class="modal-content-register">
+      <div class="modal-header-register">
+        <h5 class="modal-title-register black-text">Registrera</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeRegModal.emit()">
+          <i class="bi bi-x-square-fill"></i>
+        </button>
+      </div>
+      <div class="modal-body-register ">
+        <form (submit)="registerUser()">
+          <div class="form-group mb-3">
+            <label for="displayName" class="black-text">Uppvisningsnamn</label>
+            <input type="text" id="fullName" class="form-control" [(ngModel)]="newUser.displayName" name="display">
+          </div>
+          <div class="form-group mb-3">
+            <label for="email" class="label black-text">Email</label>
+            <input type="email" id="email" class="form-control" [(ngModel)]="newUser.email" name="email">
+          </div>
+          <div class="form-group mb-3">
+            <label for="username" class="black-text">Användarnamn</label>
+            <input type="text" id="username" class="form-control" [(ngModel)]="newUser.userName" (ngModelChange)="checkUsernameValidity()" name="user">
+            <div *ngIf="!usernameValid" class="text-danger">Användarnamn får inte innehålla mellanrum</div>
+          </div>
+          <div class="form-group mb-3">
+            <label for="password" class="black-text">Lösenord</label>
+            <input type="password" id="password" class="form-control" [(ngModel)]="newUser.password" name="password">
+          </div>
+          <div class="form-group mb-3">
+            <label for="confirmPassword" class="black-text">Bekräfta lösenord</label>
+            <input type="password" id="confirmPassword" class="form-control" [(ngModel)]="this.confirmPassword" name="confirm">
+          </div>
+          <div *ngIf="!passwordsMatch && newUser.password.length !== 0 && this.confirmPassword.length !== 0" class="text-danger">Lösenord matchar inte</div>
+          <button type="submit" class="btn btn-primary custom-btn-size btn-block" [disabled]="!passwordsMatch || !usernameValid">Registrera</button>
+        </form>
       </div>
     </div>
   </div>
+</div>

@@ -16,3 +16,40 @@
   
   
   
+  /* Day Mode Styles */
+.day-mode {
+  background-color: #fcfea0;
+  color: black;
+}
+
+.day-mode-bg {
+  background-color: #fffad6;
+  border-radius: 5px;
+}
+
+.day-mode-border {
+  border-left: .25rem solid #7a7a7a;
+}
+
+/* Night Mode Styles */
+.night-mode {
+  background-color: #222222;
+  color: white;
+}
+
+.night-mode-bg {
+  background-color: #1a1a1a;
+  border-radius: 5px;
+}
+
+.night-mode-border {
+  border-left: .25rem solid #383838;
+}
+
+/* Other Styles */
+.quote-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+

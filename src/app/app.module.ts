@@ -11,8 +11,7 @@ import { BookCrudComponent } from './book-crud/book-crud.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './guards/AuthGuard';
-import { AuthService } from './services/auth/auth.service';
-import { BookDetailComponent } from './book-crud/book-detail/book-detail.component';
+import { AuthService } from './services/auth.service';
 import { BookListComponent } from './book-crud/book-list/book-list.component';
 import { QuoteListComponent } from './book-crud/quote-list/quote-list.component';
 import { EditFormComponent } from './book-crud/book-form/edit-form/edit-form.component';
@@ -29,7 +28,6 @@ import { FavouriteQuotesPageComponent } from './favourite-quotes-page/favourite-
     LoginModalComponent,
     RegisterModalComponent,
     BookCrudComponent,
-    BookDetailComponent,
     BookListComponent,
     QuoteListComponent,
     EditFormComponent,

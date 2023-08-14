@@ -1,42 +1,54 @@
-<br/>
 
-<div class="container">
-  
+<div class="container" [ngClass]="{ 'day-mode': isDayMode, 'night-mode': !isDayMode }">
   <div class="row">
     <div class="col-lg-6 col-md-12">
       <ul class="list-group booklistmargin">
         <li *ngFor="let book of books" class="list-group-item book-item">
           <div class="d-flex flex-column">
-            <h3 class="text-center">{{ book.title }}</h3>
+            <h3 class="text-center" [ngClass]="{ 'white-text': !isDayMode }">{{ book.title }}</h3>
 
             <div class="button-group mt-2 col-sm-12 custom-button-group">
-              <button class="btn btn-primary btn-full-width" (click)="toggleQuotes(book)">Toggle Quotes</button>
-              <button class="btn btn-warning btn-full-width" (click)="toggleEditModal(book)">
-                {{ selectedBookForEdit === book ? 'Close Edit' : 'Edit' }}
+              <button class="btn btn-primary btn-full-width"
+                      (click)="toggleQuotes(book)"
+                      [disabled]="book.quotes.length === 0">Visa citat</button>
+              <button class="btn btn-warning btn-full-width "
+                      (click)="toggleEditModal(book)">
+                {{ selectedBookForEdit === book ? 'Stäng redigering' : 'Redigera' }}
               </button>
-              <button class="btn btn-danger btn-full-width" (click)="deleteBook(book)">Delete</button>
+              <button class="btn btn-danger btn-full-width"
+                      (click)="deleteBook(book)">Radera</button>
             </div>
           </div>
 
-          <app-edit-form
-            [display]="selectedBookForEdit === book ? 'block' : 'none'"
-            [editedBook]="book"
-            (save)="handleSave($event)"
-            (close)="closeEditModal()">
+          <app-edit-form [display]="selectedBookForEdit === book ? 'block' : 'none'"
+                         [editedBook]="book"
+                         (save)="handleSave($event)"
+                         (close)="closeEditModal()">
           </app-edit-form>
 
           <div *ngIf="book.quotesVisible" class="quote-list-container">
+            <br/>
             <app-quote-list [quotes]="book.quotes" class="full-width"></app-quote-list>
           </div>
         </li>
       </ul>
+      <div class="text-center mt-4" *ngIf="books.length === 0">
+        No books added yet.
+      </div>
     </div>
     
     <div class="col-lg-6 col-md-12 d-flex flex-column align-items-center">
       <br/>
-      <button class="btn btn-success" (click)="toggleAddBookForm()">Add Book</button>
+      <button class="btn btn-success"
+              (click)="toggleAddBookForm()"
+              [ngClass]="{ 'day-mode-button': isDayMode, 'night-mode-button': !isDayMode }">
+        Lägg till bok
+      </button>
       <div class="add-book-form-container">
-        <app-add-book-form [existingBooks]="books" *ngIf="addingBook" (bookAdded)="loadBooks()" (cancelled)="toggleAddBookForm()"></app-add-book-form>
+        <app-add-book-form [existingBooks]="books"
+                           *ngIf="addingBook"
+                           (bookAdded)="loadBooks()"
+                           (cancelled)="toggleAddBookForm()"></app-add-book-form>
       </div>
     </div>
   </div>

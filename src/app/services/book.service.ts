@@ -11,37 +11,29 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  
-
-  // Fetch all books
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.baseUrl}/book`);
   }
 
-  // Add a new book
   addBook(book: Book): Observable<Book> {
     return this.http.post<Book>(`${this.baseUrl}/book`, book);
   }
 
-  // Update a book
   updateBook(book: Book): Observable<Book> {
     return this.http.put<Book>(`${this.baseUrl}/book/${book.id}`, book);
   }
 
-  // Delete a book
   deleteBook(book: Book): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/book/${book.id}`);
   }
 
-  // Fetch quotes for a specific book
   getQuotesForBook(book: Book): Quote[] {
     return book.quotes;
   }
 
-  // Add a quote to a book
   addQuoteToBook(quoteId: string, text: string, pageNumber: number, bookTitle: string, isFavourite: boolean): Observable<Quote> {
     const url = `${this.baseUrl}/quote`;
-  
+
     const quote: Quote = {
       quoteId: quoteId,
       text: text,
@@ -49,26 +41,23 @@ export class BookService {
       bookTitle: bookTitle,
       isFavourite: isFavourite
     };
-  
+
     return this.http.post<Quote>(url, quote);
   }
-  
 
-  // Update a quote
   updateQuote(quote: Quote): Observable<Quote> {
     return this.http.put<Quote>(`${this.baseUrl}/quote/${quote.quoteId}`, quote);
   }
 
-  // Delete a quote
   deleteQuote(quote: Quote): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/quote/${quote.quoteId}`);
   }
 
   toggleIsQuoteFavourite(quote: Quote): Observable<Quote> {
-    return this.http.put<Quote>(`${this.baseUrl}/quote/toggle-favourite/${quote.quoteId}`, quote)
+    return this.http.put<Quote>(`${this.baseUrl}/quote/toggle-favourite/${quote.quoteId}`, quote);
   }
 
   getFavouriteQuotes(): Observable<Quote[]> {
-    return this.http.get<Quote[]>(`${this.baseUrl}/quote/favourite`)
+    return this.http.get<Quote[]>(`${this.baseUrl}/quote/favourite`);
   }
 }

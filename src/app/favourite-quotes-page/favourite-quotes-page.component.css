@@ -1,0 +1,30 @@
+/* Day Mode */
+.day-mode {
+    background-color: white;
+    color: black;
+  }
+  
+  .day-mode .list-group-item {
+    background-color: #f6f1b4; /* Light gray background */
+    border-color: #e9ecef; /* Light gray border */
+  }
+  
+  /* Night Mode */
+  .night-mode {
+    background-color: #2c4f8a; /* Dark background */
+  }
+  
+  .night-mode .list-group-item {
+    background-color: #7d8c9f; /* Darker gray background */
+    border-color: #555555; /* Darker gray border */
+  }
+  
+  /* Common styles for both modes */
+  .quote-text {
+    font-size: 18px;
+  }
+  
+  .quote-details {
+    font-size: 14px;
+  }
+  

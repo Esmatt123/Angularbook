@@ -1,0 +1,11 @@
+/* Day mode styles */
+.day-mode {
+    background-color: white;
+    color: black;
+  }
+  
+  /* Night mode styles */
+  .night-mode {
+    background-color: #343a40;
+    color: white;
+  }

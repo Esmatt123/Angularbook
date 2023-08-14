@@ -1,19 +1,37 @@
-<br />
-<div class="container">
+<div class="container" [ngClass]="{
+  'day-mode': isDayMode,
+  'night-mode': !isDayMode
+}">
   <ul class="list-group" style="list-style-type: none;">
-    <li *ngFor="let quote of quotes; let i = index" class="mb-4">
-      <figure class="p-3 rounded" style="border-left: .25rem solid #7a7a7a; background-color: #f0f0f0;">
-        <blockquote class="blockquote pb-2">
-          <p>
-            "{{ quote.text }}"
-          </p>
+    <li *ngFor="let quote of quotes; let i = index"
+        class="mb-4"
+        [ngClass]="{
+          'day-mode-bg': isDayMode,
+          'night-mode-bg': !isDayMode
+        }">
+     
+      <figure class="p-3 rounded"
+              [ngClass]="{
+                'day-mode-border': isDayMode,
+                'night-mode-border': !isDayMode
+              }"
+              style="margin: 0;">
+        <blockquote class="blockquote pb-2"
+                    [ngClass]="{
+                      'day-mode-bg': isDayMode,
+                      'night-mode-bg': !isDayMode
+                    }">
+          <p>"{{ quote.text }}"</p>
         </blockquote>
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
-          <p class="mb-0">Page Number: {{ quote.pageNumber }}</p>
-          <p class="mb-0">Book Title: {{ quote.bookTitle }}</p>
-          <p class="mb-0">Favorite: {{ quote.isFavourite ? 'Yes' : 'No' }}</p>
+          <p class="mb-0">Sidnummer: {{ quote.pageNumber }}</p>
+          <p class="mb-0">Bok Titel: {{ quote.bookTitle }}</p>
+          <p class="mb-0">Favorit: {{ quote.isFavourite ? 'Ja' : 'Nej' }}</p>
           <div class="form-check form-check-inline mb-3 mb-md-0 checkbox-container">
-            <input class="form-check-input checkbox-size" type="checkbox" [(ngModel)]="quote.isFavourite" (change)="toggleQuoteIsFavourite(quote)">
+            <input class="form-check-input checkbox-size"
+                   type="checkbox"
+                   [(ngModel)]="quote.isFavourite"
+                   (change)="toggleQuoteIsFavourite(quote)">
             <label class="form-check-label" for="quoteIsFavourite{{i}}"></label>
           </div>
         </div>

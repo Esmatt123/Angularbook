@@ -16,3 +16,64 @@
   .some-space{
     margin: 10px;
   }
+
+  /* Day Mode */
+.day-mode {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text color */
+    .form-container{
+        background-color: #fcfea0; /* Dark background */
+        color: #ffffff; /* White text color */
+        .list-group-item{
+            border: 1px solid #ebe6a6;
+            background-color: #fffad6;
+            .form-control {
+                background-color: rgb(255, 255, 255);
+            }
+        }
+      }
+  }
+  
+  /* Night Mode */
+  .night-mode {
+    background-color: #343a40; /* Dark background */
+    color: #ffffff; /* White text color */
+    
+    .form-container{
+    background-color: #222222; /* Dark background */
+    color: #ffffff; /* White text color */
+    
+    .list-group-item{
+        border: 1px solid #555;
+        background-color: #1a1a1a;
+        .form-control {
+            background-color: lightgrey;
+        }
+    }
+  }
+  }
+  
+  /* Day Mode */
+.day-mode-button {
+    background-color: #007bff; /* Blue button background color */
+    color: #ffffff; /* White text color */
+    border-color: #007bff; /* Blue border color */
+    transition: background-color 0.3s, color 0.3s; /* Transition for background and text color */
+  }
+  
+  .day-mode-button:hover {
+    background-color: #0056b3; /* Darker blue background color on hover */
+    color: #ffffff; /* White text color on hover */
+  }
+  
+  /* Night Mode */
+  .night-mode-button {
+    background-color: #343a40;
+    color: #ffffff; /* White text color */
+  }
+  
+  .night-mode-button:hover {
+    background-color: #545b62; /* Darker grey background color on hover */
+    color: #ffffff; /* White text color on hover */
+  }
+  

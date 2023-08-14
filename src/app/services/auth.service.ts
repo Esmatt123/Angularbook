@@ -33,13 +33,12 @@ export class AuthService {
     localStorage.removeItem(this.EXPIRY_KEY);
   }
 
-  // Method to check if the user is authenticated
   isAuthenticated(): boolean {
     const token = this.getAuthToken();
     const expiryDate = this.getExpiryDate();
 
     if (token && expiryDate && expiryDate > new Date()) {
-      return true; // Token is present and not expired
+      return true;
     }
     return false;
   }
@@ -47,7 +46,7 @@ export class AuthService {
   isTokenExpired(): boolean {
     const expiryDate = this.getExpiryDate();
     if (expiryDate && expiryDate <= new Date()) {
-      return true; // Token is expired
+      return true;
     }
     return false;
   }
@@ -55,11 +54,12 @@ export class AuthService {
   getUserDisplayName(): string | null {
     const token = this.getAuthToken();
     if (token) {
-      const payload = this.decodeTokenPayload(token); // You need to implement this method
+      const payload = this.decodeTokenPayload(token);
       return payload.name; // Replace with the actual property name
     }
     return null;
   }
+
   decodeTokenPayload(token: string): any {
     try {
       return jwtDecode.default(token);

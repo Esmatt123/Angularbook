@@ -76,3 +76,32 @@
     margin-right: 0; /* Remove margin to allow buttons to stretch */
   }
 }
+
+.day-mode .book-item {
+  background-color: #fcfea0; /* Day mode background color */
+  border: 1px solid #ccc;
+}
+
+.night-mode .book-item {
+  background-color: #222222; /* Night mode background color */
+  border: 1px solid #555;
+}
+
+.day-mode .button-group button {
+
+  color: #ffffff; /* Day mode button text color */
+}
+
+.night-mode .button-group button {
+  background-color: #343a40; /* Night mode button background color */
+  color: #ffffff; /* Night mode button text color */
+}
+
+/* Add more classes for other styles as needed */
+.white-text {
+  color: white;
+}
+.night-mode-button {
+  background-color: #343a40; /* Set the appropriate background color for night mode */
+  color: white; /* Set the appropriate text color for night mode */
+}
