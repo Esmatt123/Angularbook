@@ -21,6 +21,8 @@ var app = builder.Build();
 
 app.UseMiddleware<ExceptionMiddleware>();
 
+app.UseReferrerPolicy();
+
 if (app.Environment.IsDevelopment())
 {
     // Other development-specific configurations
