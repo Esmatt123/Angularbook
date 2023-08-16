@@ -49,12 +49,12 @@
   }
   
   .custom-button-group .btn {
-    width: calc((100% - 80px) / 3); /* Divide the available width by 3 for 3 buttons with 10px gap */
+    width: calc((100% - 80px) / 3); 
   }
 }
 
 @media (max-width: 768px) {
-  /* Apply custom styling only on small screens */
+ 
   .custom-button-group {
     display: flex;
     flex-direction: column;

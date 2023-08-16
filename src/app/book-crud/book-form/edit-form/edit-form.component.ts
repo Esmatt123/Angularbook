@@ -39,16 +39,16 @@ export class EditFormComponent {
   constructor(private bookService: BookService, protected dayNightModeService: DayNightModeService) {}
 
   saveEdit() {
-    this.bookService.updateBook(this.editedBook).subscribe(
-      (updatedBook) => {
+    this.bookService.updateBook(this.editedBook).subscribe({
+      next: (updatedBook) => {
         console.log('Book updated:', updatedBook);
         this.save.emit(updatedBook);
         this.close.emit(); // Emit the close event to parent component
       },
-      (error) => {
+      error: (error) => {
         console.error('Error updating book:', error);
       }
-    );
+  });
   }
 
   addNewQuote() {

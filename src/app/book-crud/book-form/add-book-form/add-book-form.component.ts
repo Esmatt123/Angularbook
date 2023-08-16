@@ -60,7 +60,7 @@ export class AddBookFormComponent {
     );
 
     if (existingBook) {
-      this.errorMessage = 'A book with the same title already exists.';
+      this.errorMessage = 'En bok med samma titel finns redan';
       return;
     }
 
@@ -81,14 +81,13 @@ export class AddBookFormComponent {
 
       this.bookService.addBook(bookToAdd).subscribe({
         next: (addedBook) => {
-          console.log('New Book added:', addedBook);
           this.loadBooks();
           this.resetForm();
           this.addQuoteWithStoredTitle(bookTitle);
           this.bookAdded.emit(addedBook);
         },
         error: (error) => {
-          console.error('Error adding new book:', error);
+          console.error('Det gick inte att lägga till ny bok:', error);
         }
       });
     }
