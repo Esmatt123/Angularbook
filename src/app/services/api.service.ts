@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:5010'; // Change this URL to your API's URL
+  private apiUrl = 'https://angularbook-hdbufdg9g3cubadc.swedencentral-01.azurewebsites.net'; // Change this URL to your API's URL
 
   constructor(private http: HttpClient) {}
 

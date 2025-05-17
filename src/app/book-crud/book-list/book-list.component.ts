@@ -1,3 +1,4 @@
+import { HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { Book, Quote } from "src/app/models/book.model";
 import { BookService } from "src/app/services/book.service";
@@ -14,6 +15,7 @@ export class BookListComponent implements OnInit {
   selectedBookForEdit: Book | null = null;
   selectedBookForQuotes: Book | null = null;
   addingBook: boolean = false;
+  
 
   constructor(
     private bookService: BookService,
@@ -29,15 +31,22 @@ export class BookListComponent implements OnInit {
   }
 
   loadBooks() {
+   
+  
     this.bookService.getBooks().subscribe({
       next: (books) => {
         this.books = books;
+        console.log('Books loaded:', books);
       },
       error: (error) => {
         console.error('Error loading books:', error);
+        console.log('Error status:', error.status);
+        console.log('Error message:', error.message);
+        console.log('Error headers:', error.headers);
       }
     });
   }
+  
 
   toggleEditModal(book: Book) {
     if (this.selectedBookForEdit === book) {

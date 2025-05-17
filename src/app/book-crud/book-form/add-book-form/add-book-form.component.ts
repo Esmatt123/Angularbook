@@ -13,7 +13,7 @@ export class AddBookFormComponent {
   @Output() bookAdded = new EventEmitter<Book>();
   @Input() existingBooks: Book[] = [];
   @Output() cancelled = new EventEmitter<void>();
-
+ 
   newBook: Book = {
     id: '',
     title: '',
@@ -50,6 +50,9 @@ export class AddBookFormComponent {
       },
       error: (error) => {
         console.error('Error loading books:', error);
+        console.log('Error status:', error.status);
+      console.log('Error message:', error.message);
+      console.log('Error headers:', error.headers);
       }
     });
   }
@@ -88,6 +91,9 @@ export class AddBookFormComponent {
         },
         error: (error) => {
           console.error('Det gick inte att lägga till ny bok:', error);
+          console.log('Error status:', error.status);
+      console.log('Error message:', error.message);
+      console.log('Error headers:', error.headers);
         }
       });
     }

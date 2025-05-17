@@ -1,19 +1,33 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Book, Quote } from '../models/book.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  private baseUrl: string = 'http://localhost:5010/api'; // Replace with your actual API URL
+  private baseUrl: string = 'https://angularbook-hdbufdg9g3cubadc.swedencentral-01.azurewebsites.net/api'; // Replace with your actual API URL
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getBooks(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.baseUrl}/book`);
+    // Get the JWT token from your authentication service (replace this with your actual logic)
+    const authToken = this.authService.getAuthToken();
+
+    // Create request options with headers
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'ngrok-skip-browser-warning': 'true',
+        'Authorization': `Bearer ${authToken}` // Add the Authorization header with JWT bearer token
+      }),
+    };
+
+    // Make the GET request with custom headers
+    return this.http.get<Book[]>(`${this.baseUrl}/book`, httpOptions);
   }
+
 
   addBook(book: Book): Observable<Book> {
     return this.http.post<Book>(`${this.baseUrl}/book`, book);
@@ -58,6 +72,13 @@ export class BookService {
   }
 
   getFavouriteQuotes(): Observable<Quote[]> {
-    return this.http.get<Quote[]>(`${this.baseUrl}/quote/favourite`);
+    const authToken = this.authService.getAuthToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'ngrok-skip-browser-warning': 'true',
+        'Authorization': `Bearer ${authToken}` // Add the Authorization header with JWT bearer token
+      }),
+    };
+    return this.http.get<Quote[]>(`${this.baseUrl}/quote/favourite`, httpOptions);
   }
 }

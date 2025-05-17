@@ -31,7 +31,7 @@ export class LoginModalComponent {
       next: (response: any) => {
         // Handle successful login here
         
-
+console.log(response)
         const token = response.token; // Extract the token from the response
         const expiresIn = 3600; // Set an arbitrary expiration time (e.g., 1 hour)
 

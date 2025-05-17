@@ -1,12 +1,12 @@
 /* Day Mode */
 .day-mode {
-    background-color: white;
+    background-color: rgb(230, 185, 5);
     color: black;
   }
   
   .day-mode .list-group-item {
     background-color: #f6f1b4; /* Light gray background */
-    border-color: #e9ecef; /* Light gray border */
+    border-color: #000000; /* Light gray border */
   }
   
   /* Night Mode */
